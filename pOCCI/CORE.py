@@ -4,6 +4,7 @@ import time
 import urlparse
 
 from occi_libs import *
+from render_http import HTTPHeadersRenderer
 import transport
 import occi
 
@@ -182,8 +183,9 @@ def match_entity(attributes, filter):
 
 def check_body_entities(body, headers, err_msg=[]):
     entities = []
+    httpParser = HTTPHeadersRenderer()
     try:
-        entities = renderer_httpheaders.parse_locations(body, headers)
+        entities = httpParser.parse_locations(body, headers)
     except occi.ParseError as pe:
         err_msg.append(str(pe))
         return None
