@@ -25,7 +25,8 @@ example_attributes = {
     'occi.core.id': occi.Attribute({'name': 'occi.core.id', 'value': '1'}),
     'occi.core.title': occi.Attribute({'name': 'occi.core.title', 'value': 'Test_title_%d' % time.time()}),
     'occi.storage.size': occi.Attribute({'name': 'occi.storage.size', 'type': 'number', 'value': 0.1}),
-    'occi.storagelink.deviceid': occi.Attribute({'name': 'occi.storagelink.deviceid', 'type': 'string', 'value': "/dev/blk0"})
+    'occi.storagelink.deviceid': occi.Attribute({'name': 'occi.storagelink.deviceid', 'type': 'string', 'value': "/dev/blk0"}),
+    'occi.networkinterface.mac': occi.Attribute({'name': 'occi.networkinterface.mac', 'type': 'string', 'value': "00:11:22:33:44:55"})
 }
 
 
