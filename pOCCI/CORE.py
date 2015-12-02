@@ -508,12 +508,19 @@ def CORE_READ_DESCRIPTION(filter=None):
     attributes = []
     found = False
     entity_url = None
+    err_msg = []
 
-    check, err_msg, urls = CORE_READ_URL(occi_config['occi.tests.category'])
+    body, response_headers, http_status, content_type, check_pretest = Test.pretest_http_status("200 OK", err_msg)
+
+    category = occi_config['occi.tests.category']
+    check, err_msg = INFRA_CREATE_COMMON('compute', [category], [], err_msg)
     if not check:
         return [False, err_msg, entity_url, None, None, None]
 
-    #print urls
+    check, err_msg, urls = CORE_READ_URL(category)
+    if not check:
+        return [False, err_msg, entity_url, None, None, None]
+
     for entity_url in urls:
         #print base_url, url
         body, headers, http_status, content_type = connection.get(url=entity_url)
