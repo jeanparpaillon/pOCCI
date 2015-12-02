@@ -801,6 +801,8 @@ def INFRA_CREATE_COMMON(resource, categories, additional_attributes, err_msg):
     all_attributes = []
     attributes = {}
 
+    body, response_headers, http_status, content_type, check_pretest = Test.pretest_http_status("200 OK", err_msg)
+
     kind = Test.search_category({'class': 'kind', 'term': resource, 'scheme': 'http://schemas.ogf.org/occi/infrastructure#'})
     #print kind
 
@@ -986,6 +988,17 @@ class INFRA_CREATE005(Test):
 
         storage = Test.search_category({'term': 'storage', 'scheme': 'http://schemas.ogf.org/occi/infrastructure#'})
         network = Test.search_category({'term': 'network', 'scheme': 'http://schemas.ogf.org/occi/infrastructure#'})
+        compute = Test.search_category({'term': 'compute', 'scheme': 'http://schemas.ogf.org/occi/infrastructure#'})
+
+
+        check, err_msg = INFRA_CREATE_COMMON('storage', [occi.Category(storage)], [], err_msg)
+        if not check:
+            return [False, err_msg]
+
+        check, err_msg = INFRA_CREATE_COMMON('network', [occi.Category(network)], [], err_msg)
+        if not check:
+            return [False, err_msg]
+
         check_read, tmp_err_msg = CORE_READ002_COMMON(category=storage, links=storage_links)
         if not check_read:
             check = False
@@ -1004,8 +1017,6 @@ class INFRA_CREATE005(Test):
             if not network_links:
                 err_msg.append('No network found')
             return [False, err_msg]
-
-        compute = Test.search_category({'term': 'compute', 'scheme': 'http://schemas.ogf.org/occi/infrastructure#'})
 
         new_compute = 'Category: %s; scheme="%s"; class="%s"\n\r\
 Link: <%s>; rel="%s"; category="%s"\n\r\
