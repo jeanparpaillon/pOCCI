@@ -343,7 +343,7 @@ class CORE_CREATE001(Test):
                 }),
                 occi.Attribute({
                     'name': 'occi.compute.architecture',
-                    'value': 'arch',
+                    'value': 'x86',
                 }),
             ]
         )
