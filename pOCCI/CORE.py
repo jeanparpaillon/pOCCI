@@ -354,7 +354,7 @@ class CORE_CREATE001(Test):
             url = kind['location']
         body, response_headers, http_status, content_type = connection.post(url=url, headers=['Content-Type: %s' % occi_config['mimetype']] + new_cat_h, body=new_cat_s)
         Test.clear_categories()
-        check_create, tmp_err_msg = check_http_status("201 Created", http_status)
+        check_create, tmp_err_msg = check_http_status("((201 Created)|(200 OK))", http_status)
         err_msg += tmp_err_msg
 
         if not check_create:
