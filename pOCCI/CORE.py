@@ -824,7 +824,11 @@ def INFRA_CREATE_COMMON(resource, categories, additional_attributes, err_msg):
 
     new_cat_s, new_cat_h = renderer.render_resource(categories, None, attributes.values())
 
-    body, response_request, http_status, content_type = connection.post(url=occi_config['url'] + kind['location'], headers=['Content-Type: %s' % occi_config['mimetype']] + new_cat_h, body=new_cat_s)
+    if kind['location'].startswith("/"):
+        url = occi_config['url'] + kind['location']
+    else:
+        url = kind['location']
+    body, response_request, http_status, content_type = connection.post(url=url, headers=['Content-Type: %s' % occi_config['mimetype']] + new_cat_h, body=new_cat_s)
     check_create, tmp_err_msg = check_http_status("(200 OK|201 Created)", http_status)
     err_msg += tmp_err_msg
 
@@ -842,7 +846,11 @@ def INFRA_CREATE_COMMON(resource, categories, additional_attributes, err_msg):
 
     Test.clear_categories()
 
-    body, response_headers, http_status, content_type = connection.get(url=occi_config['url'] + kind['location'])
+    if kind['location'].startswith("/"):
+        url = occi_config['url'] + kind['location']
+    else:
+        url = kind['location']
+    body, response_headers, http_status, content_type = connection.get(url=url)
     entities2 = check_body_entities(body, response_headers, err_msg)
     # check if the entity is really created (just check the first: entities[0])
     check_created = False
