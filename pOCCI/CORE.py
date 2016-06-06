@@ -410,7 +410,11 @@ def CORE_READ_URL(filter):
         return [False, err_msg, None]
 
     for category in [mixin]:
-        body, response_headers, http_status, content_type = connection.get(url=occi_config['url'] + category['location'])
+        if category['location'].startswith("/"):
+            url = occi_config['url'] + category['location']
+        else:
+            url = category['location']
+            body, response_headers, http_status, content_type = connection.get(url=url)
         try:
             locations = renderer.parse_locations(body, response_headers)
         except occi.ParseError as pe:
