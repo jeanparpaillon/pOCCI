@@ -8,6 +8,7 @@ else:
     from StringIO import StringIO
 
 import occi
+from occi_libs import *
 
 
 # for curl helper callback function
@@ -239,6 +240,8 @@ class Transport:
             if not url.endswith('/'):
                 url += '/'
             url += '-/'
+        elif url.startswith("/"):
+            url = occi_config['url'] + url
 
         if mimetype is None and 'mimetype' in self.config:
             mimetype = self.config['mimetype']
