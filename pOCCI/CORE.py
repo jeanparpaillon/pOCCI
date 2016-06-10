@@ -25,7 +25,8 @@ example_attributes = {
     'occi.core.title': occi.Attribute({'name': 'occi.core.title', 'value': 'Test_title_%d' % time.time()}),
     'occi.storage.size': occi.Attribute({'name': 'occi.storage.size', 'type': 'number', 'value': 0.1}),
     'occi.storage.state': occi.Attribute({'name': 'occi.storage.state', 'type': 'enum', 'value': "inactive"}),
-    'occi.storagelink.deviceid': occi.Attribute({'name': 'occi.storagelink.deviceid', 'type': 'string', 'value': "/dev/blk0"})
+    'occi.storagelink.deviceid': occi.Attribute({'name': 'occi.storagelink.deviceid', 'type': 'string', 'value': "/dev/blk0"}),
+    'occi.networkinterface.mac': occi.Attribute({'name': 'occi.networkinterface.mac', 'type': 'string', 'value': "aa:bb:cc:dd:ee:ff"})
 }
 
 
@@ -1088,7 +1089,7 @@ def INFRA_CREATE_LINK(resource_name, resource_type):
 
     body, response_headers, http_status, content_type = connection.post(url=resourcelink['location'], headers=['Content-Type: %s' % occi_config['mimetype']] + new_resourcelink_h, body=new_resourcelink_s)
 
-    check_create, tmp_err_msg = check_http_status("201 Created", http_status)
+    check_create, tmp_err_msg = check_http_status("((200 OK)|(201 Created))", http_status)
     err_msg += tmp_err_msg
 
     if not check_create:
