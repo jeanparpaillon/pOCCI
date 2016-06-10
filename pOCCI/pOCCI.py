@@ -34,11 +34,12 @@ tests_definitions = {
 }
 
 
-tests_skipped = set([
-    'OCCI/CORE/CREATE/001',
-    'OCCI/CORE/CREATE/006',
-    'OCCI/INFRA/CREATE/005',
-])
+tests_skipped = set([])
+# tests_skipped = set([
+#     'OCCI/CORE/CREATE/001',
+#     'OCCI/CORE/CREATE/006',
+#     'OCCI/INFRA/CREATE/005',
+# ])
 
 
 def usage(name=__file__):
