@@ -1006,7 +1006,7 @@ Link: <%s>; rel="%s"; category="%s"\n\r\
 ' % (compute['term'], compute['scheme'], compute['class'], storage_links[0], storage['scheme'] + storage['term'], 'http://schemas.ogf.org/occi/infrastructure#storagelink', network_links[0], network['scheme'] + network['term'], 'http://schemas.ogf.org/occi/infrastructure#networkinterface')
 
         body, response_headers, http_status, content_type = connection.post(url=compute['location'], headers=['Content-Type: text/plain'], body=new_compute)
-        check_create, tmp_err_msg = check_http_status("201 Created", http_status)
+        check_create, tmp_err_msg = check_http_status("((200 OK)|(201 Created))", http_status)
         err_msg += tmp_err_msg
 
         if not check_create:
