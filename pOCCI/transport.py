@@ -247,7 +247,13 @@ class Transport:
             mimetype = self.config['mimetype']
 
         curl = self.curl
-
+        if config['proxy']:
+            proxy_opts = config['proxy'].split(':')
+            if len(proxy_opts) > 0:
+                curl.setopt(pycurl.PROXY, proxy_opts[0])
+                if len(proxy_opts) > 1:
+                    curl.setopt(pycurl.PROXYPORT, int(proxy_opts[1]))
+        
         curl.setopt(pycurl.URL, url)
 
         # Keystone

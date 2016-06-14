@@ -16,6 +16,7 @@ occi_defaults = {
     'curlverbose': False,
     'connectiontimeout': 60,
     'timeout': 120,
+    'proxy': '',
 
     'occi.tests.category': {'term': 'compute', 'class': 'kind', 'scheme': 'http://schemas.ogf.org/occi/infrastructure#'},
     'occi.tests.entity': {},
