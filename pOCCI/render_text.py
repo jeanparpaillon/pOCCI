@@ -314,8 +314,8 @@ class TextRenderer(Renderer):
             if valuematch:
                 value = valuematch.group(1)
             # sanity check: there should not be any quotes now
-            if value[0] == '"' or (len(value) >= 2 and value[-1] == '"'):
-                raise occi.ParseError('Unexpected quotes in category', chunk)
+            #if value[0] == '"' or (len(value) >= 2 and value[-1] == '"'):
+            #    raise occi.ParseError('Unexpected quotes in category', chunk)
 
             if key == 'location':
                 if not check_url(value):
