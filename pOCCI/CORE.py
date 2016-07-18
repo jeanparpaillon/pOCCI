@@ -26,7 +26,8 @@ example_attributes = {
     'occi.storage.size': occi.Attribute({'name': 'occi.storage.size', 'type': 'number', 'value': 0.1}),
     'occi.storage.state': occi.Attribute({'name': 'occi.storage.state', 'type': 'enum', 'value': "inactive"}),
     'occi.storagelink.deviceid': occi.Attribute({'name': 'occi.storagelink.deviceid', 'type': 'string', 'value': "/dev/blk0"}),
-    'occi.networkinterface.mac': occi.Attribute({'name': 'occi.networkinterface.mac', 'type': 'string', 'value': "aa:bb:cc:dd:ee:ff"})
+    'occi.networkinterface.mac': occi.Attribute({'name': 'occi.networkinterface.mac', 'type': 'string', 'value': "aa:bb:cc:dd:ee:ff"}),
+    'occi.networkinterface.interface': occi.Attribute({'name': 'occi.networkinterface.interface', 'type': 'string', 'value': "eth0"})
 }
 
 
